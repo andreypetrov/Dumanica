@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dumanica</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main_menu"> Думаница </string>
+    <string name="new_game"> Нова игра </string>
+    <string name="options"> Настройки </string>
+    <string name="exit">Изход</string>
+
+    <!-- Options dialog -->
+    <string name="wordsCount">брой думи:</string>
+    <string name="attemptsCount">брой опити:</string>
+    <string name="confirm">Сигурен ли си?</string>
+    <string name="background">Фон</string>
+
+    <!-- Game screen -->
+    <string name="attemptsLeftCount">оставащи опити:</string>
+    <string name="wordsLeftCount">оставащи думи:</string>
+    <string name="points">точки:</string>
+ 	<string name="wordLetterPlaceholder">а дума</string>
+ 	<string name="letterPlaceholder">а азбука</string>
+</resources>

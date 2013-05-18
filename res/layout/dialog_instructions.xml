@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+   	>
+
+     <ImageView
+        style="@style/InfoPadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:padding="5dip"
+        android:src="@drawable/parch_bg" 
+        android:contentDescription="@string/background"/>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="5dip" >
+
+       <!-- <TextView
+            android:id="@+id/infoText1"
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/info1"
+            android:textColor="@color/Black" />
+
+        <ImageView
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:src="@drawable/all_bad" 
+            android:contentDescription="@string/bad_chibis"/>
+
+        <TextView
+            android:id="@+id/infoText2"
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/info2"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:id="@+id/infoText3"
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/info3"
+            android:textColor="@color/Black" />
+
+        <ImageView
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:src="@drawable/all_good" 
+            android:contentDescription="@string/good_chibis"/>
+
+        <TextView
+            android:id="@+id/infoText4"
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/info4"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:id="@+id/infoText5"
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/info5"
+            android:textColor="@color/Black" />
+ -->
+        <ImageView
+            android:id="@+id/cancelButton"
+            style="@style/InfoPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:src="@drawable/ok" 
+            android:contentDescription="@android:string/ok"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_800_480_240dpi"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".GameActivity"
+    android:orientation="vertical"
+     >
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/points" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/attemptsLeftCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/attemptsLeftCount" />
+
+            <TextView
+                android:id="@+id/wordsLeftCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wordsLeftCount" />
+        </LinearLayout>
+    </LinearLayout>
+	
+   <LinearLayout
+        android:id="@+id/wordBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+       <TextView
+            android:id="@+id/wordLetterPlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wordLetterPlaceholder" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/alphabetBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/letterPlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/letterPlaceholder" />
+    </LinearLayout>
+
+</LinearLayout>

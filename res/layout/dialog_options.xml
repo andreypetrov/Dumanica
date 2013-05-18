@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  <ImageView
+        style="@style/InfoPadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:padding="5dip"
+        android:src="@drawable/parch3_bg" 
+        android:contentDescription="@string/background"/> --> 
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dip" 
+        android:paddingTop="20dip" 
+        android:background="@drawable/parch3_bg"
+		>
+
+		<com.petrovdevelopment.dumanica.libs.MagicTextView
+            xmlns:qwerjk="http://schemas.android.com/apk/res/com.petrovdevelopment.dumanica"
+            android:text="@string/wordsCount" 
+            android:onClick="onExitClick" 
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"            
+            android:textSize="12sp"
+            android:textColor="@color/LimeGreen" 
+            android:padding="10dp"
+            android:layout_marginTop="10dip"/>
+		   
+		<RadioGroup android:id="@+id/wordsCount"		   
+		   android:layout_width="wrap_content"
+		   android:layout_height="50dp"
+		   android:orientation="horizontal"
+		   android:checkedButton="@+id/word1"
+		   >
+		   <RadioButton android:id="@+id/word1"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		   <RadioButton android:id="@+id/word2"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		   <RadioButton android:id="@+id/word3"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		   <RadioButton android:id="@+id/word4"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		</RadioGroup>
+		
+		<com.petrovdevelopment.dumanica.libs.MagicTextView
+            xmlns:qwerjk="http://schemas.android.com/apk/res/com.petrovdevelopment.dumanica"
+            android:text="@string/attemptsCount" 
+            android:onClick="onExitClick" 
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"            
+            android:textSize="12sp"
+            android:textColor="@color/Yellow" 
+            android:padding="10dp"/>
+		
+		<RadioGroup android:id="@+id/attemptsCount"
+		   android:layout_width="wrap_content"
+		   android:layout_height="50dp"
+		   android:orientation="horizontal"
+		   android:checkedButton="@+id/attempt1"
+		   >
+		   <RadioButton android:id="@+id/attempt1"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		   <RadioButton android:id="@+id/attempt2"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		   <RadioButton android:id="@+id/attempt3"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		   <RadioButton android:id="@+id/attempt4"
+		      android:width="50dp"
+		      android:height="50dp"
+		      android:button="@drawable/button_radio"/>
+		</RadioGroup>
+		
+        <ImageView
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:src="@drawable/ok" 
+            android:contentDescription="@android:string/ok"
+            android:layout_marginBottom="20dip"/>
+</LinearLayout>
