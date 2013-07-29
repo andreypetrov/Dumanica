@@ -21,16 +21,30 @@ public class WordVM {
 	private int mAttemptsLeft;
 	private int mCharactersCount;
 	private String mWord; //the string of the actual word
+	private String mMaskedWord; //user gradually reveals the masked word, and when finally it matches the original mWord then the user wins
+	//e.g. цена and "****". Then user guesses "е" and then mMasketWord becomes "*е**" and so on
 	private String mHint;
+	
+	
 	
 	public WordVM(Game game, Word word) {
 		mAttemptsLeft = game.getAttemptsCount();
 		mWord = word.getWord();
+		mMaskedWord = buildMasketWord(mWord);
 		List<String> synonymHints = chooseSynonymHints(word.getSynonyms());
 		mHint = buildHint(word.getCategory(), synonymHints);
 	}
 
 	
+	private String buildMasketWord(String word) {
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i<word.length(); i++){			
+			sb.append("*");
+		}
+		return sb.toString();
+	}
+
+
 	/**
 	 * Choose randomly NUMBER_OF_HINTS of the synonyms of a word to be its game hints.
 	 * If there are less than NUMBER_OF_HINTS, then just shuffle them (by choosing them randomly in the same manner).
