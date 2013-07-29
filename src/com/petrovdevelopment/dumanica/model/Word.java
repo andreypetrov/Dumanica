@@ -34,7 +34,7 @@ public class Word {
 	}
 	
 	/**
-	 * Get a list of all the words synonyms. A synonym can be more than one word
+	 * Get a list of all the word synonyms. A synonym can be more than one word
 	 * @return
 	 */
 	public List<String> getSynonyms() {

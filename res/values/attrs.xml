@@ -25,4 +25,12 @@
 		    <enum name="round" value="2" />
 		</attr>
 	</declare-styleable>
+	
+	
+	<declare-styleable name="Keyboard">
+       <attr name="key_background_image" format="reference" />
+   </declare-styleable>
+   
+	<item type="id" name="keyboardBar1"/>
+    <item type="id" name="keyboardBar2"/>
 </resources>

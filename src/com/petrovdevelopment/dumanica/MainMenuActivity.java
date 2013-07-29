@@ -3,9 +3,9 @@ package com.petrovdevelopment.dumanica;
 import com.petrovdevelopment.dumanica.MainApplication;
 import com.petrovdevelopment.dumanica.dialogs.*;
 import com.petrovdevelopment.dumanica.model.Game;
+import com.petrovdevelopment.dumanica.model.Preferences;
 import com.petrovdevelopment.dumanica.threads.LoadModelCaller;
 import com.petrovdevelopment.dumanica.threads.LoadModelTask;
-import com.petrovdevelopment.dumanica.utils.Preferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,12 @@ import android.view.View;
 
 //import android.view.Menu;
 
-
+/**
+ * The main menu screen with options for a new game, instructions, etc.
+ * Handles the result from the database loading of words.
+ * @author andrey
+ *
+ */
 public class MainMenuActivity extends Activity implements LoadModelCaller {
 
 	@Override
@@ -46,12 +51,11 @@ public class MainMenuActivity extends Activity implements LoadModelCaller {
 	}
 	
 	public void onExitClick(View view) {
-		ConfirmDialog confirmDialog = new ConfirmDialog();
-		confirmDialog.show(getFragmentManager(), MainApplication.DIALOG);
+		onBackPressed();
 	}
 
 	/**
-	 * Start the game once the model has been loaded
+	 * Start the game once the model has been loaded asynchronously
 	 */
 	@Override
 	public void onPostLoadModelExecute() {
@@ -59,9 +63,14 @@ public class MainMenuActivity extends Activity implements LoadModelCaller {
 		startActivity(intent);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		ConfirmDialog confirmDialog = new ConfirmDialog();
+		confirmDialog.show(getFragmentManager(), MainApplication.DIALOG);
+	}
 	/*
 	 * @Override public boolean onCreateOptionsMenu(Menu menu) { // Inflate the menu; this adds items to the action bar if it is present.
 	 * getMenuInflater().inflate(R.menu.main_menu, menu); return true; }
 	 */
-
+	
 }

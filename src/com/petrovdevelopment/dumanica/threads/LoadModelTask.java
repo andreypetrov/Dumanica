@@ -24,7 +24,8 @@ public class LoadModelTask extends AsyncTask<Object, Void, Integer>{
 	}
 
 	/**
-	 * Open database, get the random words and load then into a list of word models
+	 * Open database, get the random words and load then into a list of word models. 
+	 * This list is kept by the main Game model.
 	 * Pass in the context as a parameter
 	 * Automatically done on worker thread (separate from UI thread)
 	 */
@@ -32,8 +33,11 @@ public class LoadModelTask extends AsyncTask<Object, Void, Integer>{
 		mContext = (Context) args[0];
 		
 		mDb = new DatabaseHelper(mContext);
-		mWordsCursor = mDb.getWords();
+		
 		Game game = ((MainApplication) mContext.getApplicationContext()).getGame();
+		int wordsCount = game.getWordsCount();
+		
+		mWordsCursor = mDb.getWords(wordsCount);
 		game.initFromCursor(mWordsCursor);
 		return game.getWordsCount();		
 	}

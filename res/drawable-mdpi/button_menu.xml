@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: add here a different image for the pressed_state! -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:state_pressed="false"
       android:drawable="@drawable/menu_button"></item> 

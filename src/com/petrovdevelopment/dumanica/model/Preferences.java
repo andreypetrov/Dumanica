@@ -1,4 +1,4 @@
-package com.petrovdevelopment.dumanica.utils;
+package com.petrovdevelopment.dumanica.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;

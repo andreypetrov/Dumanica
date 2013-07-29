@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 
 import com.petrovdevelopment.dumanica.MainApplication;
 import com.petrovdevelopment.dumanica.R;
-import com.petrovdevelopment.dumanica.utils.Preferences;
+import com.petrovdevelopment.dumanica.model.Preferences;
 
 /**
  * Dialog giving access to the options the game

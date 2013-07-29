@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res/com.petrovdevelopment.dumanica"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_800_480_240dpi"
@@ -13,20 +14,28 @@
 
     <LinearLayout
         android:id="@+id/topBar"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/pointsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pointsLabel"
+            android:layout_marginRight="10dp" />
+		<TextView
             android:id="@+id/points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/points" />
-
+		
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/attemptsAndWordsLeftCount"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            android:gravity="right">
 
             <TextView
                 android:id="@+id/attemptsLeftCount"
@@ -40,30 +49,33 @@
                 android:layout_height="wrap_content"
                 android:text="@string/wordsLeftCount" />
         </LinearLayout>
+        
+        
+        
+        
     </LinearLayout>
 	
+    <!-- Add to this layout the letter views of the word -->
    <LinearLayout
         android:id="@+id/wordBar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
        <TextView
             android:id="@+id/wordLetterPlaceholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wordLetterPlaceholder" />
     </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/alphabetBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="vertical" >
-        <TextView
-            android:id="@+id/letterPlaceholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/letterPlaceholder" />
-    </LinearLayout>
+
+    <com.petrovdevelopment.dumanica.views.Keyboard
+        android:id="@+id/keyboard"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	custom:key_background_image="@drawable/green_circle"
+     />
 
 </LinearLayout>

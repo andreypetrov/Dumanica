@@ -1,4 +1,4 @@
-package com.petrovdevelopment.dumanica.viewmodel;
+package com.petrovdevelopment.dumanica.viewmodels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,8 @@ import com.petrovdevelopment.dumanica.model.Word;
 /**
  * View model (following the c# pattern MVVM)
  * except that it really provides only the data with no event handlers
- * Represents the data required to visualize a Word on the screen
+ * Represents the data formatted in the way it is required to visualize a Word on the screen.
+ * Corresponds to a Word object
  * @author andrey
  *
  */
@@ -66,7 +67,8 @@ public class WordVM {
 				 result += gameHint; 
 				 result +=", "; 
 			}
-			result = result.substring(0, result.length()-2); //remove the last two characters ", "
+			//remove the last two characters, which are comma and space ", "
+			result = result.substring(0, result.length()-2); 
 		}
 		return result;
 	}

@@ -5,8 +5,7 @@ import java.util.List;
 
 import android.database.Cursor;
 
-import com.petrovdevelopment.dumanica.utils.Preferences;
-import com.petrovdevelopment.dumanica.viewmodel.WordVM;
+import com.petrovdevelopment.dumanica.viewmodels.WordVM;
 
 /**
  * Model representing the state of the game word
@@ -14,46 +13,38 @@ import com.petrovdevelopment.dumanica.viewmodel.WordVM;
  *
  */
 public class Game {
-	private Preferences mPreferences;	
-	
-	private int mWordsLeft; //when it reaches 0 the game is over
-	
+	private Preferences mPreferences;	//the user input preferences ("настройки")
 	private List<WordVM> mWordViewModels; //models representing every word
+	private int points;
 	
 	//difficulty
 	//TODO add a ViewModel for the current word screen 
 	
 	public Game(Preferences preferences){
 		mPreferences = preferences;
-		initWordsList();
-	}
-
-	private void initWordsList() {
-		mWordViewModels = new ArrayList<WordVM>();
-	}
-	
-	public WordVM getWordVM(int index) {
-		return mWordViewModels.get(index);
 	}
 
 	public void initFromCursor(Cursor mWordsCursor) {
 		//clear the words list
-		initWordsList();
+		mWordViewModels = new ArrayList<WordVM>();
+		//set points back to 0
+		setPoints(0);
+		
 		//and populate it with new words
 		do {
 			Word word = new Word(mWordsCursor.getString(1), mWordsCursor.getString(2), mWordsCursor.getString(3));
 			mWordViewModels.add(new WordVM(this, word));			
 		} while (mWordsCursor.moveToNext());
 		
-		mWordsLeft =  mWordViewModels.size();
 	}
 
+	//when it reaches 0 the game is over
 	public int getWordsLeft() {
-		return mWordsLeft;
+		return mWordViewModels.size();
 	}
 	
 	/**
-	 * Get the words count from the preferences
+	 * Get the words count from the preferences. Can be called before the words have been loaded.
 	 * @return
 	 */
 	public int getWordsCount() {
@@ -61,11 +52,28 @@ public class Game {
 	}
 	
 	/**
-	 * Get the attempts count per word from the preferences
+	 * Get the attempts count per word from the preferences. Can be called before the words have been loaded.
 	 * @return
 	 */
 	public int getAttemptsCount() {
 		return mPreferences.getAttemptsCount();
+	}
+
+	/**
+	 * Removes and returns the first word in the list or returns null if the list is empty
+	 * @return
+	 */
+	public WordVM removeNextWordVM() {
+		if (getWordsLeft() > 0) return mWordViewModels.remove(0);
+		else return null;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 }

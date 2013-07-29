@@ -13,8 +13,18 @@ import com.petrovdevelopment.dumanica.R;
 //import com.petrovdevelopment.dumanica.utils.TextManager;
 //import com.petrovdevelopment.dumanica.utils.U;
 
+/**
+ * Confirms if the activity should do something.
+ * If the activity is an instance of ConfirmDialogParent it can define its own implementation of the onDialogOkClick() method
+ * Otherwise default functionality is to finish the activity on pressing ok. 
+ * @author andrey
+ *
+ */
 public class ConfirmDialog extends DialogFragment {
 
+	public static void showConfirmDialog() {	
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,7 +101,7 @@ public class ConfirmDialog extends DialogFragment {
 	}
 
 	/**
-	 * A method to be overwritten to provide some custom behavior
+	 * A method to be overwritten to provide some custom behavior and look of the confirm dialog.
 	 * 
 	 * @param view
 	 */

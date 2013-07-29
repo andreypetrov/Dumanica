@@ -3,7 +3,7 @@ package com.petrovdevelopment.dumanica;
 import android.app.Application;
 
 import com.petrovdevelopment.dumanica.model.Game;
-import com.petrovdevelopment.dumanica.utils.Preferences;
+import com.petrovdevelopment.dumanica.model.Preferences;
 
 /**
  * Main application class. 
