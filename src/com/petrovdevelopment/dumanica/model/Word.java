@@ -1,9 +1,7 @@
 package com.petrovdevelopment.dumanica.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Model of a word from the game.

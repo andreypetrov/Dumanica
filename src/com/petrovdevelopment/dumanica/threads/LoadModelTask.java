@@ -2,7 +2,6 @@ package com.petrovdevelopment.dumanica.threads;
 
 import com.petrovdevelopment.dumanica.MainApplication;
 import com.petrovdevelopment.dumanica.model.Game;
-import com.petrovdevelopment.dumanica.model.Word;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -35,11 +34,11 @@ public class LoadModelTask extends AsyncTask<Object, Void, Integer>{
 		mDb = new DatabaseHelper(mContext);
 		
 		Game game = ((MainApplication) mContext.getApplicationContext()).getGame();
-		int wordsCount = game.getWordsCount();
+		int wordsCount = game.getWordsCountPerGame();
 		
 		mWordsCursor = mDb.getWords(wordsCount);
 		game.initFromCursor(mWordsCursor);
-		return game.getWordsCount();		
+		return game.getWordsCountPerGame();		
 	}
 
 	// can use UI thread here

@@ -1,26 +1,22 @@
 package com.petrovdevelopment.dumanica;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Point;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.petrovdevelopment.dumanica.dialogs.ConfirmDialog;
-import com.petrovdevelopment.dumanica.libs.MagicTextButton;
 import com.petrovdevelopment.dumanica.model.Game;
-import com.petrovdevelopment.dumanica.viewmodels.WordVM;
+import com.petrovdevelopment.dumanica.utils.U;
 import com.petrovdevelopment.dumanica.views.Keyboard;
 import com.petrovdevelopment.dumanica.views.Keyboard.OnButtonClickedListener;
 
 public class GameActivity extends Activity {
 	Game mGame;
-	WordVM mCurrentWordVM;
+	Keyboard mKeyboard;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,57 +24,42 @@ public class GameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);	
 		initKeyboard();
-		initGameBoard();
+		initGame();
 	}
-	
-	
+
 	private void initKeyboard() {
-		Keyboard keyboard = (Keyboard) findViewById(R.id.keyboard);
-		keyboard.setOnButtonClickedListener(new OnButtonClickedListener() {
+		mKeyboard = (Keyboard) findViewById(R.id.keyboard);
+		mKeyboard.setOnButtonClickedListener(new OnButtonClickedListener() {
 			@Override
-			public void onButtonClicked(	String value) {
-				Log.i(this.getClass().getSimpleName(), value);
+			public void onButtonClicked(Button button,	String letter) {
+				//endGame();
+				mGame.update(letter);
+				updateUi();
+				U.log(this, mGame.getPercentageSuccess());
 			}
 		});
 	}
 
-
 	/**
 	 * Execute only once, when the activity has been created
 	 */
-	private void initGameBoard() {
-		//initAlphabetView();
-		initNextRound();//next round is in this case the first round	
-	}
-
-
-	/**
-	 * Execute every time a new word should come on screen
-	 */
-	private void initNextRound() {
-		mCurrentWordVM = mGame.removeNextWordVM();
-		if (mCurrentWordVM!=null) {
-			initWordBar();
-			updateWordsLeftCount(mGame.getWordsLeft());
-			updateAttemptsLeftCount(mCurrentWordVM.getAttemptsLeft());
-		} else {
-			endGame();
-		}
+	private void initGame() {
+		mGame.start();
+		updateUi();
 	}
 
 	private void initWordBar() {
 		LinearLayout wordBar = (LinearLayout) findViewById(R.id.wordBar);
 		wordBar.removeAllViews(); //clear existing views
 		
-		int lettersCount = mCurrentWordVM.getWord().length();
+		int lettersCount = mGame.getCurrentWordVM().getWord().length();
 
 		for (int i = 0; i < lettersCount; i++){
 		   //create a view and add it to the wordBar
 			//TODO remove the letters from here, it should be empty
-			wordBar.addView(createWordBarLetter(String.valueOf(mCurrentWordVM.getWord().charAt(i))));
+			wordBar.addView(createWordBarLetter(String.valueOf(mGame.getCurrentWordVM().getWord().charAt(i))));
 			//wordBar.addView(createWordBarLetter(""));
 		}
-		
 	}
 	
 	//create every letter for the main hangman hidden word
@@ -88,89 +69,37 @@ public class GameActivity extends Activity {
 		textView.setText(label);
 		return textView;
 	}
-	
-	
-	
-	
-	private void initAlphabetView() {	
-		LinearLayout alphabetBar1 = (LinearLayout) findViewById(R.id.keyboardBar1);
-		LinearLayout alphabetBar2 = (LinearLayout) findViewById(R.id.keyboardBar2);
-		
-		int alphabetBarWidth = getDisplayWidthMinusDimensionHorizontalMarginsInPixels(); // minus left and right margin
-		
-		//Calculate button width based on the alphabet bar width
-		int letterWidth = (alphabetBarWidth/15);
 
-		//first half of alphabet
-		for (int i = 0; i<15;i++) {
-			String letter = String.valueOf(getString(R.string.alphabet).charAt(i));	
-			Button letterButton = createButton(letter, letterWidth, letterWidth);
-			alphabetBar1.addView(letterButton);
-			
-		}
-		//second half of alphabet
-		for (int i = 15; i<30; i++) {
-			String letter = String.valueOf(getString(R.string.alphabet).charAt(i));	
-			Button letterButton = createButton(letter, letterWidth, letterWidth);
-			alphabetBar2.addView(letterButton);
-		}
-
-	}
-	
-	private int getDisplayWidthMinusDimensionHorizontalMarginsInPixels() {
-		DisplayMetrics outerMetrics = new DisplayMetrics(); //output parameter, C artifact
-		getWindowManager().getDefaultDisplay().getMetrics(outerMetrics);
-		int displayWidth = outerMetrics.widthPixels; //in pixels		
-		int marginInPixels = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin); 
-		return displayWidth - 2 *marginInPixels;
-	}
 	
 	
-	private Button createButton(String label, int width, int height) {
-		MagicTextButton button = new MagicTextButton(this);
-		button.setBackgroundResource(R.drawable.green_circle);
-		button.setText(label);
-		button.setTextColor(Color.WHITE);
-		button.setTextSize(TypedValue.COMPLEX_UNIT_PX, width/3);
-	
-		button.setMinimumWidth(0); // set this to 0, because button has default min width 64dip!
-		button.setWidth(width);
-		//button.setLayoutParams(getButtonLinearLayoutParams());
-		
-		button.setMinHeight(0);
-		button.setHeight(height);
-	
-		Log.i(this.toString(), "paddingLeft: " + button.getPaddingLeft());
-		//36 padding 16 
-		Log.i(this.toString(), "button width: " + button.getWidth());
-		return button;
-	}
-	
-	/**
-	 * Wrap content and add margins.
-	 * Not used for now
-	 * @return
-	 */
-	/*private LayoutParams getButtonLinearLayoutParams() {
-		LinearLayout.LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		params.setMargins(2, 0, 2, 0);
-		return params;
-	}
-	*/
-	
-
+	//Execute in the beginning and then on every letter guess
 	//If there are animations, they should be executed async
 	public void updateUi() {
-		updateAttemptsLeftCount(mCurrentWordVM.getAttemptsLeft());
+		if(mGame.isFinished()) endGame();
+		else if (mGame.isNewRound()) initRoundUi();
+		else updateRoundUi();
+	}
+	
+	//execute every time a new round begins
+	public void initRoundUi () {
+		mKeyboard.reset();
+		//TODO extract next three UI methods in separate views that will have animations
+		initWordBar();
+		updateWordsLeftCount(mGame.getWordsLeft());
+		updateAttemptsLeftCount(mGame.getCurrentWordVM().getAttemptsLeft());
+	}
+
+
+	
+	private void updateRoundUi() {
+		updateAttemptsLeftCount(mGame.getCurrentWordVM().getAttemptsLeft());
 		updatePoints();
 		updateWordBar();
 	}
 
-	
-	
-	
 	private void updatePoints() {
-		// TODO Auto-generated method stub	
+		TextView pointsView = (TextView) findViewById(R.id.points);
+		pointsView.setText(String.valueOf(mGame.getPoints()));
 	}
 	
 	private void updateWordBar() {
@@ -183,20 +112,20 @@ public class GameActivity extends Activity {
 		TextView attempts = (TextView) findViewById(R.id.attemptsLeftCount);
 		attempts.setText(getString(R.string.attemptsLeftCount) + count);
 	}
+	
     public void updateWordsLeftCount(int count) {
     	TextView words = (TextView) findViewById(R.id.wordsLeftCount);
     	words.setText(getString(R.string.wordsLeftCount) + count);
 	}
     
-    
-    
-    
 	private void endGame() {
-		// TODO Auto-generated method stub
-		
+		Intent intent = new Intent(this, EndGameActivity.class);
+		//intent.putExtra(EndGameActivity.FINAL_POINTS_EXTRA, mGame.getPoints());
+		intent.putExtra(EndGameActivity.FINAL_POINTS_EXTRA, 50);
+		intent.putExtra(EndGameActivity.FINAL_PERCENT_EXTRA, mGame.getPercentageSuccess());
+		startActivity(intent);
+		finish();
 	}
-
-	
 
 	@Override
 	public void onBackPressed() {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: add here a different image for the pressed_state! -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_enabled="false"
+      android:drawable="@drawable/grey_circle"/>
+  <item android:state_pressed="true"
+        android:drawable="@drawable/grey_circle" />
+  <item android:state_enabled="true"
+      android:drawable="@drawable/green_circle"></item> 
+</selector>

@@ -42,7 +42,8 @@ public class MainMenuActivity extends Activity implements LoadModelCaller {
 	 * @param view
 	 */
 	public void onNewGameClick(View view) {
-		(new LoadModelTask()).execute(this);
+		//FIXME a bug with multiple press of start button -starts multiple games
+		(new LoadModelTask()).execute(this); 
 	}
 	
 	public void onOptionsClick(View view) {
@@ -68,9 +69,4 @@ public class MainMenuActivity extends Activity implements LoadModelCaller {
 		ConfirmDialog confirmDialog = new ConfirmDialog();
 		confirmDialog.show(getFragmentManager(), MainApplication.DIALOG);
 	}
-	/*
-	 * @Override public boolean onCreateOptionsMenu(Menu menu) { // Inflate the menu; this adds items to the action bar if it is present.
-	 * getMenuInflater().inflate(R.menu.main_menu, menu); return true; }
-	 */
-	
 }

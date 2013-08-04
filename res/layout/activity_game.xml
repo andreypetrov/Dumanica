@@ -75,7 +75,8 @@
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:orientation="vertical"
-    	custom:key_background_image="@drawable/green_circle"
+    	custom:one_click_mode="true"
+    	custom:key_background_image="@drawable/button_keyboard"
      />
 
 </LinearLayout>

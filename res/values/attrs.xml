@@ -28,7 +28,8 @@
 	
 	
 	<declare-styleable name="Keyboard">
-       <attr name="key_background_image" format="reference" />
+       <attr name="key_background_image" format="integer" />
+        <attr name="one_click_mode" format="boolean" />
    </declare-styleable>
    
 	<item type="id" name="keyboardBar1"/>

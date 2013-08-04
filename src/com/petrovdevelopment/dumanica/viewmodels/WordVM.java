@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import android.util.Log;
+
 import com.petrovdevelopment.dumanica.model.Game;
 import com.petrovdevelopment.dumanica.model.Word;
 
@@ -20,28 +22,49 @@ public class WordVM {
 	
 	private int mAttemptsLeft;
 	private int mCharactersCount;
+	private boolean mFinished;
+	private boolean mSuccess;
+	
+	private Game mGame;
+	
+	private int mPointsForLastGuess;
+	
 	private String mWord; //the string of the actual word
-	private String mMaskedWord; //user gradually reveals the masked word, and when finally it matches the original mWord then the user wins
-	//e.g. цена and "****". Then user guesses "е" and then mMasketWord becomes "*е**" and so on
+	
+	//user gradually reveals the masked word, and when finally it matches the original mWord then the user wins
+	//e.g. цена and "****". Then user guesses "е" and then mMasketWordBuilder becomes "*е**" and so on
+	//we use StringBuilder instead of string just for easier character replacement
+	private StringBuilder mMaskedWordBuilder;
 	private String mHint;
 	
+	private List<String> mGuessedLetters;
+
 	
 	
 	public WordVM(Game game, Word word) {
-		mAttemptsLeft = game.getAttemptsCount();
+		mGame = game;
+		mGuessedLetters = new ArrayList<String>();
+		mPointsForLastGuess = 0;
+		mAttemptsLeft = mGame.getAttemptsCountPerWord();
 		mWord = word.getWord();
-		mMaskedWord = buildMasketWord(mWord);
+		mMaskedWordBuilder = buildMaskedWord(mWord);
+		
 		List<String> synonymHints = chooseSynonymHints(word.getSynonyms());
 		mHint = buildHint(word.getCategory(), synonymHints);
 	}
 
-	
-	private String buildMasketWord(String word) {
+	/**
+	 * Build a masked word by keeping the spaces and replacing the rest of the letters with an asterisk
+	 * @param word
+	 * @return
+	 */
+	private StringBuilder buildMaskedWord(String word) {
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i<word.length(); i++){			
-			sb.append("*");
+		for(int i = 0; i<word.length(); i++){	
+			if(word.charAt(i) == ' ') sb.append(' ');
+			else sb.append('*');
 		}
-		return sb.toString();
+		return sb;
 	}
 
 
@@ -51,7 +74,7 @@ public class WordVM {
 	 * TODO:add filtering
 	 * @return
 	 */
-	public static List<String> chooseSynonymHints(List<String> allSynonyms) {
+	private static List<String> chooseSynonymHints(List<String> allSynonyms) {
 		List<String> synonymsCopy = new ArrayList<String>();
         synonymsCopy.addAll(allSynonyms);
         int count = synonymsCopy.size();
@@ -87,8 +110,69 @@ public class WordVM {
 		return result;
 	}
 
+
+	/**
+	 * Update the current word state, based on the letter chosen by the player from the virtual keyboard
+	 * Replaces all * in the masked word with the letter if the letter is at that position in the original word
+	 * @param guessLetter
+	 * @return if the letter was in the word 
+	 */
+	public boolean update(String guessLetter) 
+	{
+		mPointsForLastGuess = 0;
+		boolean isLetterGuessed = false;
+		char letterChar = guessLetter.charAt(0);
+		
+		for(int i = 0; i<getWord().length(); i++) {
+			//if the letter is in the word and is not already guessed
+			if(letterChar == getWord().charAt(i) && letterChar!=mMaskedWordBuilder.charAt(i)) {
+				isLetterGuessed = true;
+				mPointsForLastGuess = getPointsForLastGuess() + Game.POINTS_PER_LETTER;
+				mGuessedLetters.add(guessLetter);
+				mMaskedWordBuilder.setCharAt(i, letterChar);
+			}
+		}
+		if(!isLetterGuessed) mAttemptsLeft--;
+
+		updateFinishFlags();
+
+		return isLetterGuessed;
+	}
+	
+	
+	private void updateFinishFlags() {
+		if(isGuessed()) {
+			mFinished = true;
+			mSuccess = true;
+		} 
+		else if(mAttemptsLeft == 0) {
+			mFinished = true;
+			mSuccess = false;
+		} 
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	///GETTERS
 
+
+	public boolean isGuessed() {
+		return (getWord().equals(getMaskedWordBuilderString()));
+	}
+	
 	/**
 	 * @return the mAttemptsLeft
 	 */
@@ -115,5 +199,22 @@ public class WordVM {
 	 */
 	public String getHint() {
 		return mHint;
+	}
+
+
+	private String getMaskedWordBuilderString() {
+		return mMaskedWordBuilder.toString();
+	}
+
+	public int getPointsForLastGuess() {
+		return mPointsForLastGuess;
+	}
+
+	public boolean isFinished() {
+		return mFinished;
+	}
+	
+	public boolean isSuccess() {
+		return mSuccess;
 	}
 }

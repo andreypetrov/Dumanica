@@ -1,5 +1,8 @@
 package com.petrovdevelopment.dumanica.views;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.petrovdevelopment.dumanica.R;
 import com.petrovdevelopment.dumanica.libs.MagicTextButton;
 
@@ -10,7 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
+//import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,27 +22,33 @@ import android.widget.LinearLayout;
 
 /**
  * All mandatory layout properties from LinearLayout are mandatory in Keyboard too (width and height)
+ * TODO test the buttons background change on a real telephone, maybe it is only a simulator issue?
  * @author andrey
  *
  */
 public class Keyboard extends LinearLayout {
-	private int mButtonBackgroundResourceId;
 	private OnButtonClickedListener mListener;
 	private LinearLayout firstRow;
 	private LinearLayout secondRow;
 	private Activity mActivity;
-	private Drawable mKeyBackgroundImage;
+	private List<Button> mButtons;
+	private AttributeSet mAttributeSet;
+	
+	private boolean mIsInOneClickMode; //one click per key allowed on the keyboard
 	
 	public interface OnButtonClickedListener {
-		void onButtonClicked(String value);
+		void onButtonClicked(Button button, String letter);
 	}
 	
 	
 	public Keyboard(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		mActivity = (Activity) context;
+		mButtons = new ArrayList<Button>();
 		
-		loadAttributes(context, attrs);
+		mActivity = (Activity) context;
+		mAttributeSet = attrs;
+		
+		mIsInOneClickMode = getIsInOneClickModeFromAttributes();
 		
 		firstRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.keyboard, this, false);
 		firstRow.setId(R.id.keyboardBar1);
@@ -52,18 +61,37 @@ public class Keyboard extends LinearLayout {
 		
 		this.addView(firstRow);
 		this.addView(secondRow);
-
+		
+		
 	}
 
-	private void loadAttributes(Context context, AttributeSet attrs) {		
-		if (attrs != null) {
-			TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Keyboard, 0, 0);
+	private boolean getIsInOneClickModeFromAttributes() {
+		boolean isInOneClickMode = false; //default if an issue with the attributes
+
+		if (mAttributeSet != null) {
+			TypedArray attributes = mActivity.getTheme().obtainStyledAttributes(mAttributeSet, R.styleable.Keyboard, 0, 0);
 			try {
-				setKeyBackgroundImage(attributes.getDrawable(R.styleable.Keyboard_key_background_image));
+				isInOneClickMode = attributes.getBoolean(R.styleable.Keyboard_one_click_mode, false);
 			} finally {
 				attributes.recycle();
 			}
 		}
+		return isInOneClickMode;
+	}
+	
+	
+	private Drawable getButtonBackground() {		
+		Drawable background = null;
+
+		if (mAttributeSet != null) {
+			TypedArray attributes = mActivity.getTheme().obtainStyledAttributes(mAttributeSet, R.styleable.Keyboard, 0, 0);
+			try {
+				background = attributes.getDrawable(R.styleable.Keyboard_key_background_image);
+			} finally {
+				attributes.recycle();
+			}
+		}
+		return background;
 	}
 
 	
@@ -80,9 +108,14 @@ public class Keyboard extends LinearLayout {
 		
 		for (int i = firstLetterIndexInAlphabet; i<=lastLetterIndexInAlphabet;i++) {
 			String letter = String.valueOf(mActivity.getString(R.string.alphabet).charAt(i));	
-			Button letterButton = createButton(letter, letterWidth, letterWidth);
+			Button letterButton = createButton(letter, letterWidth, letterWidth, i);
 			bar.addView(letterButton);
 		}
+	}
+
+	
+	public void reset() {
+		for(Button button : mButtons) button.setEnabled(true);
 	}
 
 	private int getDisplayWidthMinusDimensionHorizontalMarginsInPixels() {
@@ -95,9 +128,11 @@ public class Keyboard extends LinearLayout {
 	
 	
 	@SuppressWarnings("deprecation") //TODO decide whether to use the setBackgroundDrawable (deprecated) or the setBackground (requires API Level 16) 
-	private Button createButton(String label, int width, int height) {
+	private Button createButton(String label, int width, int height, int alphabetIndex) {
+
 		MagicTextButton button = new MagicTextButton(mActivity);
-		if(getKeyBackgroundImage()!=null) button.setBackgroundDrawable(getKeyBackgroundImage());
+
+		button.setBackgroundDrawable(getButtonBackground());
 
 		button.setText(label);
 		button.setTextColor(Color.WHITE);
@@ -105,57 +140,28 @@ public class Keyboard extends LinearLayout {
 	
 		button.setMinimumWidth(0); // set this to 0, because button has default min width 64dip!
 		button.setWidth(width);
-		//button.setLayoutParams(getButtonLinearLayoutParams());
-		
+
 		button.setMinHeight(0);
 		button.setHeight(height);
-		
+
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Button button = (Button) v;
-				mListener.onButtonClicked(button.getText().toString());
+				if(mIsInOneClickMode) button.setEnabled(false);
+				mListener.onButtonClicked(button, button.getText().toString());
 			}
 		});
 		
+		mButtons.add(button);
 		return button;
 	}
 	 
 	
 	
 	
-	
-	
-	
 	public void setOnButtonClickedListener (OnButtonClickedListener onButtonClickListener) {
 		mListener = onButtonClickListener;
 	}
-	
-	
-	
-	/**
-	 * @return the mButtonBackgroundResourceId
-	 */
-	public int getButtonBackgroundResourceId() {
-		return mButtonBackgroundResourceId;
-	}
 
-	/**
-	 * @param mButtonBackgroundResourceId the mButtonBackgroundResourceId to set
-	 */
-	public void setButtonBackgroundResourceId(int buttonBackgroundResourceId) {
-		this.mButtonBackgroundResourceId = buttonBackgroundResourceId;
-		invalidate();
-		requestLayout();
-	}
-
-	public Drawable getKeyBackgroundImage() {
-		return mKeyBackgroundImage;
-	}
-
-	public void setKeyBackgroundImage(Drawable keyBackgroundImage) {
-		this.mKeyBackgroundImage = keyBackgroundImage;
-		invalidate();
-		requestLayout();
-	}
 }

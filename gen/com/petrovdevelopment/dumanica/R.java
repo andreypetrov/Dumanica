@@ -54,10 +54,22 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int innerShadowRadius=0x7f010001;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
          */
         public static final int key_background_image=0x7f01000f;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int one_click_mode=0x7f010010;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -293,70 +305,76 @@ containing a value of this type.
         public static final int attempts_remaining_icon_800_480_240dpi=0x7f020000;
         public static final int background=0x7f020001;
         public static final int background_800_480_240dpi=0x7f020002;
-        public static final int button_menu=0x7f020003;
-        public static final int button_radio=0x7f020004;
-        public static final int cancel=0x7f020005;
-        public static final int green_circle=0x7f020006;
-        public static final int green_circle2=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int inactive_icon_800_480_240dpi=0x7f020009;
-        public static final int keyboard_key=0x7f02000a;
-        public static final int letter=0x7f02000b;
-        public static final int letter_active=0x7f02000c;
-        public static final int menu_button=0x7f02000d;
-        public static final int ok=0x7f02000e;
-        public static final int options=0x7f02000f;
-        public static final int options_attempts_icon_800_480_240dpi=0x7f020010;
-        public static final int options_words_icon_800_480_240dpi=0x7f020011;
-        public static final int parch2_bg=0x7f020012;
-        public static final int parch3_bg=0x7f020013;
-        public static final int parch_bg=0x7f020014;
-        public static final int points_icon_800_480_240dpi=0x7f020015;
-        public static final int settings_background_800_480_240dpi=0x7f020016;
-        public static final int wall_bg=0x7f020017;
-        public static final int word_remaining_icon_800_480_240dpi=0x7f020018;
+        public static final int button_keyboard=0x7f020003;
+        public static final int button_menu=0x7f020004;
+        public static final int button_radio=0x7f020005;
+        public static final int cancel=0x7f020006;
+        public static final int green_circle=0x7f020007;
+        public static final int green_circle2=0x7f020008;
+        public static final int grey_circle=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int inactive_icon_800_480_240dpi=0x7f02000b;
+        public static final int keyboard_key=0x7f02000c;
+        public static final int letter=0x7f02000d;
+        public static final int letter_active=0x7f02000e;
+        public static final int menu_button=0x7f02000f;
+        public static final int ok=0x7f020010;
+        public static final int options=0x7f020011;
+        public static final int options_attempts_icon_800_480_240dpi=0x7f020012;
+        public static final int options_words_icon_800_480_240dpi=0x7f020013;
+        public static final int parch2_bg=0x7f020014;
+        public static final int parch3_bg=0x7f020015;
+        public static final int parch_bg=0x7f020016;
+        public static final int points_icon_800_480_240dpi=0x7f020017;
+        public static final int settings_background_800_480_240dpi=0x7f020018;
+        public static final int wall_bg=0x7f020019;
+        public static final int word_remaining_icon_800_480_240dpi=0x7f02001a;
     }
     public static final class id {
-        public static final int action_settings=0x7f04001b;
-        public static final int attempt1=0x7f040017;
-        public static final int attempt2=0x7f040018;
-        public static final int attempt3=0x7f040019;
-        public static final int attempt4=0x7f04001a;
-        public static final int attemptsAndWordsLeftCount=0x7f040008;
-        public static final int attemptsCount=0x7f040016;
-        public static final int attemptsLeftCount=0x7f040009;
+        public static final int action_settings=0x7f04001d;
+        public static final int attempt1=0x7f040019;
+        public static final int attempt2=0x7f04001a;
+        public static final int attempt3=0x7f04001b;
+        public static final int attempt4=0x7f04001c;
+        public static final int attemptsAndWordsLeftCount=0x7f04000a;
+        public static final int attemptsCount=0x7f040018;
+        public static final int attemptsLeftCount=0x7f04000b;
         public static final int bevel=0x7f040001;
-        public static final int cancelButton=0x7f04000f;
-        public static final int confirmText=0x7f04000e;
-        public static final int keyboard=0x7f04000d;
+        public static final int cancelButton=0x7f040011;
+        public static final int confirmText=0x7f040010;
+        public static final int finalMessage=0x7f040005;
+        public static final int finalPoints=0x7f040006;
+        public static final int keyboard=0x7f04000f;
         public static final int keyboardBar1=0x7f040003;
         public static final int keyboardBar2=0x7f040004;
         public static final int miter=0x7f040000;
-        public static final int okButton=0x7f040010;
-        public static final int points=0x7f040007;
-        public static final int pointsLabel=0x7f040006;
+        public static final int okButton=0x7f040012;
+        public static final int points=0x7f040009;
+        public static final int pointsLabel=0x7f040008;
         public static final int round=0x7f040002;
-        public static final int topBar=0x7f040005;
-        public static final int word1=0x7f040012;
-        public static final int word2=0x7f040013;
-        public static final int word3=0x7f040014;
-        public static final int word4=0x7f040015;
-        public static final int wordBar=0x7f04000b;
-        public static final int wordLetterPlaceholder=0x7f04000c;
-        public static final int wordsCount=0x7f040011;
-        public static final int wordsLeftCount=0x7f04000a;
+        public static final int topBar=0x7f040007;
+        public static final int word1=0x7f040014;
+        public static final int word2=0x7f040015;
+        public static final int word3=0x7f040016;
+        public static final int word4=0x7f040017;
+        public static final int wordBar=0x7f04000d;
+        public static final int wordLetterPlaceholder=0x7f04000e;
+        public static final int wordsCount=0x7f040013;
+        public static final int wordsLeftCount=0x7f04000c;
     }
     public static final class layout {
-        public static final int activity_game=0x7f030000;
-        public static final int activity_main_menu=0x7f030001;
-        public static final int dialog_confirm=0x7f030002;
-        public static final int dialog_instructions=0x7f030003;
-        public static final int dialog_options=0x7f030004;
-        public static final int keyboard=0x7f030005;
+        public static final int activity_end_game=0x7f030000;
+        public static final int activity_game=0x7f030001;
+        public static final int activity_main_menu=0x7f030002;
+        public static final int dialog_confirm=0x7f030003;
+        public static final int dialog_instructions=0x7f030004;
+        public static final int dialog_options=0x7f030005;
+        public static final int keyboard=0x7f030006;
     }
     public static final class menu {
-        public static final int game=0x7f090000;
-        public static final int main_menu=0x7f090001;
+        public static final int end_game=0x7f090000;
+        public static final int game=0x7f090001;
+        public static final int main_menu=0x7f090002;
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
@@ -368,12 +386,14 @@ containing a value of this type.
         public static final int attemptsLeftCount=0x7f07000a;
         public static final int background=0x7f070009;
         public static final int confirm=0x7f070008;
+        public static final int dummy_string=0x7f070012;
         public static final int exit=0x7f070005;
         public static final int letterPlaceholder=0x7f07000f;
         public static final int new_game=0x7f070003;
         public static final int options=0x7f070004;
         public static final int points=0x7f07000d;
         public static final int pointsLabel=0x7f07000c;
+        public static final int title_activity_end_game=0x7f070011;
         public static final int title_activity_main_menu=0x7f070002;
         public static final int wordLetterPlaceholder=0x7f07000e;
         /**  Options dialog 
@@ -417,22 +437,42 @@ containing a value of this type.
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
            <tr><td><code>{@link #Keyboard_key_background_image com.petrovdevelopment.dumanica:key_background_image}</code></td><td></td></tr>
+           <tr><td><code>{@link #Keyboard_one_click_mode com.petrovdevelopment.dumanica:one_click_mode}</code></td><td></td></tr>
            </table>
            @see #Keyboard_key_background_image
+           @see #Keyboard_one_click_mode
          */
         public static final int[] Keyboard = {
-            0x7f01000f
+            0x7f01000f, 0x7f010010
         };
         /**
           <p>This symbol is the offset where the {@link com.petrovdevelopment.dumanica.R.attr#key_background_image}
           attribute's value can be found in the {@link #Keyboard} array.
 
 
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
           @attr name android:key_background_image
         */
         public static final int Keyboard_key_background_image = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.petrovdevelopment.dumanica.R.attr#one_click_mode}
+          attribute's value can be found in the {@link #Keyboard} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:one_click_mode
+        */
+        public static final int Keyboard_one_click_mode = 1;
         /** Attributes that can be used with a MagicTextView.
            <p>Includes the following attributes:</p>
            <table>

@@ -19,7 +19,10 @@
     <string name="wordsLeftCount">оставащи думи:</string>
     <string name="pointsLabel">точки:</string>
     <string name="points">0</string>
- 	<string name="wordLetterPlaceholder">а дума</string>
- 	<string name="letterPlaceholder">а азбука</string>
- 	<string name="alphabet">абвгдежзийклмнопрстуфхцчшщъьюя</string>
+    <string name="wordLetterPlaceholder">а дума</string>
+    <string name="letterPlaceholder">а азбука</string>
+    <string name="alphabet">абвгдежзийклмнопрстуфхцчшщъьюя</string>
+    <string name="title_activity_end_game">EndGameActivity</string>
+    <string name="dummy_string">Dummy string</string>
+
 </resources>
