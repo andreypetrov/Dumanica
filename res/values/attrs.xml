@@ -32,6 +32,12 @@
         <attr name="one_click_mode" format="boolean" />
    </declare-styleable>
    
+	<declare-styleable name="PlaceholdersBar">
+       <attr name="placeholder_default_image" format="integer" />
+       <attr name="placeholder_success_image" format="integer" />
+       <attr name="placeholder_space_image" format="integer" />
+   </declare-styleable>
+	
 	<item type="id" name="keyboardBar1"/>
     <item type="id" name="keyboardBar2"/>
 </resources>

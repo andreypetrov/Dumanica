@@ -7,7 +7,15 @@ public class U {
 		Log.i(sender.getClass().getSimpleName(), message);
 	}
 
-	public static void log(Object sender, int percentageSuccess) {
-		log(sender, String.valueOf(percentageSuccess));
+	public static void log(Object sender, int message) {
+		log(sender, String.valueOf(message));
+	}
+	
+	public static void log(String message) {
+		log(new Object(), message);
+	}
+	
+	public static void log(int message) {
+		log(new Object(), message);
 	}
 }

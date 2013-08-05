@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-//import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,52 +20,53 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 /**
- * All mandatory layout properties from LinearLayout are mandatory in Keyboard too (width and height)
- * TODO test the buttons background change on a real telephone, maybe it is only a simulator issue?
+ * All mandatory layout properties from LinearLayout are mandatory in Keyboard too (width and height) TODO test the buttons background
+ * change on a real telephone, maybe it is only a simulator issue?
+ * 
  * @author andrey
- *
+ * 
  */
 public class Keyboard extends LinearLayout {
 	private OnButtonClickedListener mListener;
-	private LinearLayout firstRow;
-	private LinearLayout secondRow;
+	private LinearLayout mFirstRow;
+	private LinearLayout mSecondRow;
 	private Activity mActivity;
 	private List<Button> mButtons;
 	private AttributeSet mAttributeSet;
-	
-	private boolean mIsInOneClickMode; //one click per key allowed on the keyboard
-	
+
+	private boolean mIsInOneClickMode; // one click per key allowed on the keyboard
+
 	public interface OnButtonClickedListener {
 		void onButtonClicked(Button button, String letter);
 	}
-	
-	
+
 	public Keyboard(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		mButtons = new ArrayList<Button>();
-		
-		mActivity = (Activity) context;
-		mAttributeSet = attrs;
-		
-		mIsInOneClickMode = getIsInOneClickModeFromAttributes();
-		
-		firstRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.keyboard, this, false);
-		firstRow.setId(R.id.keyboardBar1);
-		
-		secondRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.keyboard, this, false);
-		secondRow.setId(R.id.keyboardBar2);
-		
-		initRow(firstRow, 0, 14);
-		initRow(secondRow, 15, 29);
-		
-		this.addView(firstRow);
-		this.addView(secondRow);
-		
-		
+		if (!isInEditMode()) {
+			mButtons = new ArrayList<Button>();
+
+			mActivity = (Activity) context;
+			mAttributeSet = attrs;
+
+			mIsInOneClickMode = getIsInOneClickModeFromAttributes();
+
+			mFirstRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.keyboard_bar, this, false);
+			mFirstRow.setId(R.id.keyboardBar1);
+
+			mSecondRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.keyboard_bar, this, false);
+			mSecondRow.setId(R.id.keyboardBar2);
+
+			initRow(mFirstRow, 0, 14);
+			initRow(mSecondRow, 15, 29);
+
+			this.addView(mFirstRow);
+			this.addView(mSecondRow);
+
+		}
 	}
 
 	private boolean getIsInOneClickModeFromAttributes() {
-		boolean isInOneClickMode = false; //default if an issue with the attributes
+		boolean isInOneClickMode = false; // default if an issue with the attributes
 
 		if (mAttributeSet != null) {
 			TypedArray attributes = mActivity.getTheme().obtainStyledAttributes(mAttributeSet, R.styleable.Keyboard, 0, 0);
@@ -78,9 +78,8 @@ public class Keyboard extends LinearLayout {
 		}
 		return isInOneClickMode;
 	}
-	
-	
-	private Drawable getButtonBackground() {		
+
+	private Drawable getButtonBackground() {
 		Drawable background = null;
 
 		if (mAttributeSet != null) {
@@ -94,40 +93,41 @@ public class Keyboard extends LinearLayout {
 		return background;
 	}
 
-	
 	/**
 	 * 
 	 * @param row
-	 * @param firstLetterIndexInAlphabet - zero based
-	 * @param lastLetterIndexInAlphabet - zero based
+	 * @param firstLetterIndexInAlphabet
+	 *            - zero based
+	 * @param lastLetterIndexInAlphabet
+	 *            - zero based
 	 */
 	private void initRow(LinearLayout bar, int firstLetterIndexInAlphabet, int lastLetterIndexInAlphabet) {
 		int alphabetBarWidth = getDisplayWidthMinusDimensionHorizontalMarginsInPixels(); // minus left and right margin
-		//Calculate button width based on the alphabet bar width
-		int letterWidth = (alphabetBarWidth/15);
-		
-		for (int i = firstLetterIndexInAlphabet; i<=lastLetterIndexInAlphabet;i++) {
-			String letter = String.valueOf(mActivity.getString(R.string.alphabet).charAt(i));	
+		// Calculate button width based on the alphabet bar width
+		int letterWidth = (alphabetBarWidth / 15);
+
+		for (int i = firstLetterIndexInAlphabet; i <= lastLetterIndexInAlphabet; i++) {
+			String letter = String.valueOf(mActivity.getString(R.string.alphabet).charAt(i));
 			Button letterButton = createButton(letter, letterWidth, letterWidth, i);
 			bar.addView(letterButton);
 		}
 	}
 
-	
 	public void reset() {
-		for(Button button : mButtons) button.setEnabled(true);
+		for (Button button : mButtons)
+			button.setEnabled(true);
 	}
 
 	private int getDisplayWidthMinusDimensionHorizontalMarginsInPixels() {
-		DisplayMetrics outerMetrics = new DisplayMetrics(); //output parameter, C artifact
+		DisplayMetrics outerMetrics = new DisplayMetrics(); // output parameter, C artifact
 		mActivity.getWindowManager().getDefaultDisplay().getMetrics(outerMetrics);
-		int displayWidth = outerMetrics.widthPixels; //in pixels		
-		int marginInPixels = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin); 
-		return displayWidth - 2 *marginInPixels;
+		int displayWidth = outerMetrics.widthPixels; // in pixels
+		int marginInPixels = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
+		return displayWidth - 2 * marginInPixels;
 	}
-	
-	
-	@SuppressWarnings("deprecation") //TODO decide whether to use the setBackgroundDrawable (deprecated) or the setBackground (requires API Level 16) 
+
+	@SuppressWarnings("deprecation")
+	// TODO decide whether to use the setBackgroundDrawable (deprecated) or the setBackground (requires API Level 16)
 	private Button createButton(String label, int width, int height, int alphabetIndex) {
 
 		MagicTextButton button = new MagicTextButton(mActivity);
@@ -136,8 +136,8 @@ public class Keyboard extends LinearLayout {
 
 		button.setText(label);
 		button.setTextColor(Color.WHITE);
-		button.setTextSize(TypedValue.COMPLEX_UNIT_PX, width/3);
-	
+		button.setTextSize(TypedValue.COMPLEX_UNIT_PX, width / 3);
+
 		button.setMinimumWidth(0); // set this to 0, because button has default min width 64dip!
 		button.setWidth(width);
 
@@ -148,19 +148,17 @@ public class Keyboard extends LinearLayout {
 			@Override
 			public void onClick(View v) {
 				Button button = (Button) v;
-				if(mIsInOneClickMode) button.setEnabled(false);
+				if (mIsInOneClickMode)
+					button.setEnabled(false);
 				mListener.onButtonClicked(button, button.getText().toString());
 			}
 		});
-		
+
 		mButtons.add(button);
 		return button;
 	}
-	 
-	
-	
-	
-	public void setOnButtonClickedListener (OnButtonClickedListener onButtonClickListener) {
+
+	public void setOnButtonClickedListener(OnButtonClickedListener onButtonClickListener) {
 		mListener = onButtonClickListener;
 	}
 

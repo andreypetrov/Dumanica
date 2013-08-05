@@ -23,6 +23,9 @@ public class WordVM {
 	private int mAttemptsLeft;
 	private int mCharactersCount;
 	private boolean mFinished;
+	private boolean mLastLetterGuessCorrect;
+
+	
 	private boolean mSuccess;
 	
 	private Game mGame;
@@ -42,12 +45,17 @@ public class WordVM {
 	
 	
 	public WordVM(Game game, Word word) {
+		
 		mGame = game;
 		mGuessedLetters = new ArrayList<String>();
 		mPointsForLastGuess = 0;
 		mAttemptsLeft = mGame.getAttemptsCountPerWord();
 		mWord = word.getWord();
 		mMaskedWordBuilder = buildMaskedWord(mWord);
+		
+		mFinished = false;
+		mLastLetterGuessCorrect = false;
+		mSuccess = false;
 		
 		List<String> synonymHints = chooseSynonymHints(word.getSynonyms());
 		mHint = buildHint(word.getCategory(), synonymHints);
@@ -115,28 +123,24 @@ public class WordVM {
 	 * Update the current word state, based on the letter chosen by the player from the virtual keyboard
 	 * Replaces all * in the masked word with the letter if the letter is at that position in the original word
 	 * @param guessLetter
-	 * @return if the letter was in the word 
 	 */
-	public boolean update(String guessLetter) 
+	public void update(String guessLetter) 
 	{
 		mPointsForLastGuess = 0;
-		boolean isLetterGuessed = false;
+		mLastLetterGuessCorrect = false;
 		char letterChar = guessLetter.charAt(0);
 		
 		for(int i = 0; i<getWord().length(); i++) {
 			//if the letter is in the word and is not already guessed
 			if(letterChar == getWord().charAt(i) && letterChar!=mMaskedWordBuilder.charAt(i)) {
-				isLetterGuessed = true;
+				mLastLetterGuessCorrect = true;
 				mPointsForLastGuess = getPointsForLastGuess() + Game.POINTS_PER_LETTER;
 				mGuessedLetters.add(guessLetter);
 				mMaskedWordBuilder.setCharAt(i, letterChar);
 			}
 		}
-		if(!isLetterGuessed) mAttemptsLeft--;
-
+		if(!mLastLetterGuessCorrect) mAttemptsLeft--;
 		updateFinishFlags();
-
-		return isLetterGuessed;
 	}
 	
 	
@@ -216,5 +220,9 @@ public class WordVM {
 	
 	public boolean isSuccess() {
 		return mSuccess;
+	}
+
+	public boolean isLastLetterGuessCorrect() {
+		return mLastLetterGuessCorrect;
 	}
 }

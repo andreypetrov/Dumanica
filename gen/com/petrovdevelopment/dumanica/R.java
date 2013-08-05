@@ -103,6 +103,30 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int outerShadowRadius=0x7f010005;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int placeholder_default_image=0x7f010011;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int placeholder_space_image=0x7f010013;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int placeholder_success_image=0x7f010012;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -326,41 +350,45 @@ containing a value of this type.
         public static final int parch3_bg=0x7f020015;
         public static final int parch_bg=0x7f020016;
         public static final int points_icon_800_480_240dpi=0x7f020017;
-        public static final int settings_background_800_480_240dpi=0x7f020018;
-        public static final int wall_bg=0x7f020019;
-        public static final int word_remaining_icon_800_480_240dpi=0x7f02001a;
+        public static final int progress_spinner=0x7f020018;
+        public static final int settings_background_800_480_240dpi=0x7f020019;
+        public static final int spinner=0x7f02001a;
+        public static final int transparent=0x7f02001b;
+        public static final int wall_bg=0x7f02001c;
+        public static final int word_remaining_icon_800_480_240dpi=0x7f02001d;
     }
     public static final class id {
-        public static final int action_settings=0x7f04001d;
-        public static final int attempt1=0x7f040019;
-        public static final int attempt2=0x7f04001a;
-        public static final int attempt3=0x7f04001b;
-        public static final int attempt4=0x7f04001c;
-        public static final int attemptsAndWordsLeftCount=0x7f04000a;
-        public static final int attemptsCount=0x7f040018;
-        public static final int attemptsLeftCount=0x7f04000b;
+        public static final int action_settings=0x7f04001e;
+        public static final int attempt1=0x7f04001a;
+        public static final int attempt2=0x7f04001b;
+        public static final int attempt3=0x7f04001c;
+        public static final int attempt4=0x7f04001d;
+        public static final int attemptsCount=0x7f040019;
         public static final int bevel=0x7f040001;
-        public static final int cancelButton=0x7f040011;
-        public static final int confirmText=0x7f040010;
+        public static final int cancelButton=0x7f040012;
+        public static final int confirmText=0x7f040011;
         public static final int finalMessage=0x7f040005;
-        public static final int finalPoints=0x7f040006;
-        public static final int keyboard=0x7f04000f;
+        public static final int finalPercent=0x7f040006;
+        public static final int finalPoints=0x7f040007;
+        public static final int hint=0x7f04000f;
+        public static final int keyboard=0x7f040010;
         public static final int keyboardBar1=0x7f040003;
         public static final int keyboardBar2=0x7f040004;
         public static final int miter=0x7f040000;
-        public static final int okButton=0x7f040012;
-        public static final int points=0x7f040009;
-        public static final int pointsLabel=0x7f040008;
+        public static final int okButton=0x7f040013;
+        public static final int placeholdersRow=0x7f04000e;
+        public static final int points=0x7f04000a;
+        public static final int pointsLabel=0x7f040009;
         public static final int round=0x7f040002;
-        public static final int topBar=0x7f040007;
-        public static final int word1=0x7f040014;
-        public static final int word2=0x7f040015;
-        public static final int word3=0x7f040016;
-        public static final int word4=0x7f040017;
-        public static final int wordBar=0x7f04000d;
-        public static final int wordLetterPlaceholder=0x7f04000e;
-        public static final int wordsCount=0x7f040013;
-        public static final int wordsLeftCount=0x7f04000c;
+        public static final int statistics=0x7f04000b;
+        public static final int statisticsFirstRow=0x7f04000c;
+        public static final int statisticsSecondRow=0x7f04000d;
+        public static final int topBar=0x7f040008;
+        public static final int word1=0x7f040015;
+        public static final int word2=0x7f040016;
+        public static final int word3=0x7f040017;
+        public static final int word4=0x7f040018;
+        public static final int wordsCount=0x7f040014;
     }
     public static final class layout {
         public static final int activity_end_game=0x7f030000;
@@ -369,7 +397,7 @@ containing a value of this type.
         public static final int dialog_confirm=0x7f030003;
         public static final int dialog_instructions=0x7f030004;
         public static final int dialog_options=0x7f030005;
-        public static final int keyboard=0x7f030006;
+        public static final int keyboard_bar=0x7f030006;
     }
     public static final class menu {
         public static final int end_game=0x7f090000;
@@ -730,5 +758,64 @@ containing a value of this type.
           @attr name android:typeface
         */
         public static final int MagicTextView_typeface = 8;
+        /** Attributes that can be used with a PlaceholdersBar.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PlaceholdersBar_placeholder_default_image com.petrovdevelopment.dumanica:placeholder_default_image}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlaceholdersBar_placeholder_space_image com.petrovdevelopment.dumanica:placeholder_space_image}</code></td><td></td></tr>
+           <tr><td><code>{@link #PlaceholdersBar_placeholder_success_image com.petrovdevelopment.dumanica:placeholder_success_image}</code></td><td></td></tr>
+           </table>
+           @see #PlaceholdersBar_placeholder_default_image
+           @see #PlaceholdersBar_placeholder_space_image
+           @see #PlaceholdersBar_placeholder_success_image
+         */
+        public static final int[] PlaceholdersBar = {
+            0x7f010011, 0x7f010012, 0x7f010013
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.petrovdevelopment.dumanica.R.attr#placeholder_default_image}
+          attribute's value can be found in the {@link #PlaceholdersBar} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:placeholder_default_image
+        */
+        public static final int PlaceholdersBar_placeholder_default_image = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.petrovdevelopment.dumanica.R.attr#placeholder_space_image}
+          attribute's value can be found in the {@link #PlaceholdersBar} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:placeholder_space_image
+        */
+        public static final int PlaceholdersBar_placeholder_space_image = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.petrovdevelopment.dumanica.R.attr#placeholder_success_image}
+          attribute's value can be found in the {@link #PlaceholdersBar} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:placeholder_success_image
+        */
+        public static final int PlaceholdersBar_placeholder_success_image = 1;
     };
 }

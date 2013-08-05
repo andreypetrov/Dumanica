@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  <ImageView
-        style="@style/InfoPadding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:padding="5dip"
-        android:src="@drawable/parch3_bg" 
-        android:contentDescription="@string/background"/> --> 
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
@@ -23,8 +14,6 @@
 		<com.petrovdevelopment.dumanica.libs.MagicTextView
             xmlns:qwerjk="http://schemas.android.com/apk/res/com.petrovdevelopment.dumanica"
             android:text="@string/wordsCount" 
-            android:onClick="onExitClick" 
-            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"            
@@ -42,26 +31,32 @@
 		   <RadioButton android:id="@+id/word1"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="4"
+		      android:gravity="center"
 		      android:button="@drawable/button_radio"/>
 		   <RadioButton android:id="@+id/word2"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="5"
+		      android:gravity="center"
 		      android:button="@drawable/button_radio"/>
 		   <RadioButton android:id="@+id/word3"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="6"
+		      android:gravity="center"
 		      android:button="@drawable/button_radio"/>
 		   <RadioButton android:id="@+id/word4"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:gravity="center"
+		      android:text="7"
 		      android:button="@drawable/button_radio"/>
 		</RadioGroup>
 		
 		<com.petrovdevelopment.dumanica.libs.MagicTextView
             xmlns:qwerjk="http://schemas.android.com/apk/res/com.petrovdevelopment.dumanica"
             android:text="@string/attemptsCount" 
-            android:onClick="onExitClick" 
-            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"            
@@ -78,18 +73,22 @@
 		   <RadioButton android:id="@+id/attempt1"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="4"
 		      android:button="@drawable/button_radio"/>
 		   <RadioButton android:id="@+id/attempt2"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="5"
 		      android:button="@drawable/button_radio"/>
 		   <RadioButton android:id="@+id/attempt3"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="6"
 		      android:button="@drawable/button_radio"/>
 		   <RadioButton android:id="@+id/attempt4"
 		      android:width="50dp"
 		      android:height="50dp"
+		      android:text="7"
 		      android:button="@drawable/button_radio"/>
 		</RadioGroup>
 		

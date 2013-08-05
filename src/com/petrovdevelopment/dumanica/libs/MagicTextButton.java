@@ -25,8 +25,6 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Pair;
 import android.widget.Button;
-import android.widget.TextView;
-
 public class MagicTextButton extends Button {
 	public static final String ASSETS_FONT_LOCATION = "fonts/ObelixPro-cyr.ttf";
 	public static final int FONT_SIZE = 12;

@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_800_480_240dpi"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".GameActivity"
-    android:orientation="vertical"
-     >
+    tools:context=".GameActivity" >
 
     <LinearLayout
         android:id="@+id/topBar"
@@ -20,63 +19,86 @@
 
         <TextView
             android:id="@+id/pointsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pointsLabel"
-            android:layout_marginRight="10dp" />
-		<TextView
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            
+            android:background="@drawable/points_icon_800_480_240dpi"
+            android:text="@string/pointsLabel" 
+            android:textColor="@color/White"
+            />
+
+        <TextView
             android:id="@+id/points"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/points" />
-		
-        <LinearLayout
-            android:id="@+id/attemptsAndWordsLeftCount"
-            android:layout_width="fill_parent"
+            android:layout_weight=".10"
+            android:text="@string/points"
+            android:textColor="@color/White" />
+
+        <com.petrovdevelopment.dumanica.views.Statistics
+            android:id="@+id/statistics"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical" 
-            android:gravity="right">
+            android:layout_weight=".70"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/attemptsLeftCount"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/statisticsFirstRow"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/attemptsLeftCount" />
+                android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/wordsLeftCount"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attemptsLeftCount"
+                    android:textColor="@color/White"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/statisticsSecondRow"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/wordsLeftCount" />
-        </LinearLayout>
-        
-        
-        
-        
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wordsLeftCount"
+                    android:textColor="@color/White"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </com.petrovdevelopment.dumanica.views.Statistics>
     </LinearLayout>
-	
-    <!-- Add to this layout the letter views of the word -->
-   <LinearLayout
-        android:id="@+id/wordBar"
+
+    <com.petrovdevelopment.dumanica.views.PlaceholdersBar
+        android:id="@+id/placeholdersRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp">
-       <TextView
-            android:id="@+id/wordLetterPlaceholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wordLetterPlaceholder" />
-    </LinearLayout>
+        android:orientation="horizontal"
+        custom:placeholder_default_image="@drawable/green_circle"
+        custom:placeholder_space_image="@drawable/transparent"
+        custom:placeholder_success_image="@drawable/grey_circle" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummy_string"
+        android:textColor="@color/White" />
 
     <com.petrovdevelopment.dumanica.views.Keyboard
         android:id="@+id/keyboard"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:orientation="vertical"
-    	custom:one_click_mode="true"
-    	custom:key_background_image="@drawable/button_keyboard"
-     />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        custom:key_background_image="@drawable/button_keyboard"
+        custom:one_click_mode="true" />
 
 </LinearLayout>

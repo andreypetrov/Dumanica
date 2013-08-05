@@ -16,10 +16,14 @@ public class EndGameActivity extends Activity {
 		setContentView(R.layout.activity_end_game);
 		
 		TextView pointsView = (TextView) findViewById(R.id.finalPoints);
+		TextView percentView = (TextView) findViewById(R.id.finalPercent);
 		
 		Intent intent = getIntent();
 		int points = intent.getIntExtra(FINAL_POINTS_EXTRA, 0);
-		pointsView.setText(String.valueOf(points));
+		int percent = intent.getIntExtra(FINAL_PERCENT_EXTRA, 0);
+		pointsView.setText("Points: " + String.valueOf(points));
+		percentView.setText("Percent guessed words: " + String.valueOf(percent));
+		
 		
 	}
 

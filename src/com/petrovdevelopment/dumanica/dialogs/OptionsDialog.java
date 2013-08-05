@@ -115,7 +115,7 @@ public class OptionsDialog extends ConfirmDialog{
 		word4.setOnClickListener(wordsClickListener);
 	}
  
-	/**
+		/**
 	 * Add the click listener to all the attempts radio buttons
 	 * @param view
 	 */
