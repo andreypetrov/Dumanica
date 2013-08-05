@@ -7,11 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-
-//import com.petrovdevelopment.dumanica.MainApplication;
 import com.petrovdevelopment.dumanica.R;
-//import com.petrovdevelopment.dumanica.utils.TextManager;
-//import com.petrovdevelopment.dumanica.utils.U;
 
 /**
  * Confirms if the activity should do something.

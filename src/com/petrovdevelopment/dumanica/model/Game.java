@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.petrovdevelopment.dumanica.viewmodels.WordVM;
 

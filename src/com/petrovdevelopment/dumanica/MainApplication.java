@@ -15,8 +15,7 @@ public class MainApplication extends Application{
 	public static Game mGame;
 	public static Preferences mPreferences;
 	public static final String DIALOG = "dialog"; //title of the dialog fragment
-	//public static final String PREFERENCES = "preferences";
-	
+
 	public MainApplication() {
 		mPreferences = new Preferences(this);
 		mGame = new Game(mPreferences);

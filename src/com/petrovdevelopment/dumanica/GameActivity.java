@@ -19,6 +19,7 @@ public class GameActivity extends Activity {
 	PlaceholdersBar mPlaceholdersBar;
 	TextView mHint;
 	Statistics mStatistics;
+	TextView mPointsView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,14 @@ public class GameActivity extends Activity {
 	}
 	
 	private void initUi() {
+		initPoints();
 		initStatistics();
 		initPlaceholdersBar();
 		initHints();
 		initKeyboard();
 	}
 	
+
 
 	/**
 	 * Execute on every letter guess
@@ -50,6 +53,11 @@ public class GameActivity extends Activity {
 		else updateRoundUi(letter);
 	}
 
+
+	private void initPoints() {
+		mPointsView = (TextView) findViewById(R.id.points);
+		mPointsView.setText(String.valueOf(0));
+	}
 	
 	private void initKeyboard() {
 		mKeyboard = (Keyboard) findViewById(R.id.keyboard);
@@ -74,6 +82,7 @@ public class GameActivity extends Activity {
 		mStatistics.updateWordsAndResetAttempts();
 		initPlaceholdersBar();
 		initHints();
+		updatePoints();
 	}
 
 	private void initPlaceholdersBar() {
@@ -93,8 +102,7 @@ public class GameActivity extends Activity {
 	}
 
 	private void updatePoints() {
-		TextView pointsView = (TextView) findViewById(R.id.points);
-		pointsView.setText(String.valueOf(mGame.getPoints()));
+		mPointsView.setText(String.valueOf(mGame.getPoints()));
 	}
 
 	private void endGame() {

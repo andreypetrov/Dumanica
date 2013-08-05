@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import android.util.Log;
-
 import com.petrovdevelopment.dumanica.model.Game;
 import com.petrovdevelopment.dumanica.model.Word;
 
@@ -155,23 +153,9 @@ public class WordVM {
 		} 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	///
 	///GETTERS
-
+	///
 
 	public boolean isGuessed() {
 		return (getWord().equals(getMaskedWordBuilderString()));
